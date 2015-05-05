@@ -1,8 +1,10 @@
-title: “[iOS开发源码]滚动的数字：FlickerNumber"
+title: "[源码]滚动的数字：FlickerNumber"
 date: 2015-03-02 22:50:32
-tags: iOS开发
+tags: 
+- iOS开发
+- 开源代码
 id: 20
-categories: iOS开发
+categories: 
 ---
 ##起因
 最近的项目中要求实现支付宝的滚动数字的效果，查找到了一些第三方的代码，但是效果很不理想。  
@@ -10,6 +12,7 @@ categories: iOS开发
 于是准备自己来实现该效果，在学习github大牛的代码过程中，看到很多大牛都是用Category来扩展实现某些功能，  
 例如: SDWebImage中的UIImageView的Category、AFNetworking中的UIButton的Category等。  
 于是我也使用Category的方法来实现该功能。  
+<!--more-->
 
 ##思路
 数字从某个起点数字跳转到目标数字，定时的去刷新当前累加的数字，达到一个数字变化的效果。  

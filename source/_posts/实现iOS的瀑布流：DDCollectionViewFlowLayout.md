@@ -1,12 +1,15 @@
-title: “[iOS开发源码]实现iOS的瀑布流：DDCollectionViewFlowLayout"
+title: "[源码]实现iOS的瀑布流：DDCollectionViewFlowLayout"
 date: 2015-02-25 22:01:32
-tags: iOS开发
+tags: 
+- iOS开发
+- 开源代码
 id: 5
-categories: iOS开发
+categories: 
 ---
 ### 起因
 前段时间一直在做iOS客户端的64位适配，所以把开发项目设置成了最低系统要求为iOS6.0。空闲之余，准备把之前用UIScrollView实现的瀑布流用UICollectionView重新实现一下。  
 于是DDCollectionViewFlowLayout就这样诞生了。  
+<!--more-->
 ### 学习步骤
 在学习UICollectionView的过程中,首先肯定是查阅苹果的官方文档[UICollectionView](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UICollectionView_class/index.html#//apple_ref/swift/cl/UICollectionView)。  
 了解UICollectionView的基本信息以后得知要想实现瀑布流的效果必须使用[UICollectionViewLayout](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UICollectionViewLayout_class/index.html#//apple_ref/doc/c_ref/UICollectionViewLayout),继续参考苹果官方文档了解[UICollectionViewFlowLayout](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UICollectionViewFlowLayout_class/index.html#//apple_ref/occ/cl/UICollectionViewFlowLayout)必须实现的方法和生命周期。   
