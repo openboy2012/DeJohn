@@ -26,8 +26,7 @@ categories:
 当然你也可以在CocoaPods中搜索：  
 ` pod search ‘DDCollectioViewFlowLayout’ `
 效果图:
-![effect1](http://ipa-download.qiniudn.com/loadingmore.gif)  
-![effect2](http://ipa-download.qiniudn.com/waterfall.gif)  
+<img src="http://ipa-download.qiniudn.com/effect1.gif" width="276"/> <img src="http://ipa-download.qiniudn.com/effect2.gif" width="276"/>
 ### 怎么使用？
 ```
 如果你只想简单应用，导入DDCollectionViewFlowLayout以后实现以下代码：  
