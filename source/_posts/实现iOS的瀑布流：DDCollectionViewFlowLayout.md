@@ -26,14 +26,15 @@ categories:
 当然你也可以在CocoaPods中搜索：  
 ` pod search ‘DDCollectioViewFlowLayout’ `
 效果图:
-![effect1](http://ipa-download.qiniudn.com/loadingmore.gif)  
-![effect2](http://ipa-download.qiniudn.com/waterfall.gif)  
+![effect1](http://ipa-download.qiniudn.com/effect1.gif)  
+![effect2](http://ipa-download.qiniudn.com/effect2.gif)  
 ### 怎么使用？
 ```
 如果你只想简单应用，导入DDCollectionViewFlowLayout以后实现以下代码：  
 
 DDCollectionViewFlowLayout *layout = [[DDCollectionViewFlowLayout alloc] init];  
 layout.delegate = self;  
+layout.enableSticky = YES; //set header sticky if you want
 [self.collectionView setLayout:layout];  
 
 然后要实现UICollectionViewDataSource 方法中的必需方法：  
