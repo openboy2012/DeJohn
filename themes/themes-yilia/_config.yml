@@ -16,8 +16,7 @@ subnav:
   #google: "#"
   #twitter: "#"
   #linkedin: "#"
-
-  rss: /atom.xml
+  #rss: /atom.xml
 
 # Content
 excerpt_link: more
