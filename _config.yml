@@ -63,6 +63,8 @@ pagination_dir: page
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
 theme: themes-yilia
+## theme: next
+## theme: present
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html

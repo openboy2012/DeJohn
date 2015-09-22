@@ -20,7 +20,7 @@ categories:
 ##实现
 新建UILabel的Category: “UILable+FlickerNumber“  
 
-```
+``` objc
 新建方法:
  *  flicker number only a number variable
  *

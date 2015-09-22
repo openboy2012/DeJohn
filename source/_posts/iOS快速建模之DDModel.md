@@ -29,7 +29,7 @@ DDModel封装了SQLite、HTTP以及JSON/XML的ORM特性，能快速搭建一个�
 ##如何使用DDModel?
 ###DDModelHTTPClient
 参考Demo项目，你可以在你的AppDelegate里加入以下代码来启动一个DDModelHttpClient:
-```
+``` objc
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 
@@ -39,7 +39,7 @@ DDModel封装了SQLite、HTTP以及JSON/XML的ORM特性，能快速搭建一个�
 }
 ```
 这样你就启动了一个DDModelHTTPClient了，你可以通过DDModelHttpClientDelegate
-```
+``` objc
 @protocol DDHttpClientDelegate <NSObject>
 
 @optional
@@ -83,7 +83,7 @@ DDModel封装了SQLite、HTTP以及JSON/XML的ORM特性，能快速搭建一个�
 
 举例：  
  
-```
+``` objc
 @interface User : DDModel
 
 @property (nonatomic, strong) NSNumber *id;
@@ -166,7 +166,7 @@ DDModel封装了SQLite、HTTP以及JSON/XML的ORM特性，能快速搭建一个�
 你可以将更多的方法封装在该派生的模型里。
 
 DDModel同时也支持从数据缓存中获取结果：
-```
+``` objc
 
 /**
  *  Get json data first from db cache then from http server by HTTP GET Mehod.

@@ -27,7 +27,7 @@ SQLitePersistentObject最初的作者是Jeff LaMarche，它支持Cocoa中大部�
 ##如何使用?
 首先你创建一个新的Class继承于SQLitePersistentObject，然后可以根据自己的业务定义你需要的属性名：  
 例如：  
-```
+``` objc
 header file:
 #import “SQLitePersistentObject.h”
 
@@ -51,7 +51,7 @@ implementation file:
 
 ##核心代码介绍
 我这边介绍一下我添加的一些异步方法：  
-```
+``` objc
 #pragma mark - DeJohn Dong Added Methods
 /**
  *  Asynchronous add/update an object to db.

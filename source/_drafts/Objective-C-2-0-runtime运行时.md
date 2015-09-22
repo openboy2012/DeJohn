@@ -17,3 +17,33 @@ categories:
 
 ## runtime详解之runtime.h
 
+``` objc
+
+    var canvas = document.getElementById("canvas");
+
+    var context = canvas.getContext("2d");
+```
+
+``` objc
+@interface EzvizObject ：NSObject
+
+@end
+    EzvizOpenSDK *sdk = [[EzvizOpenSDK alloc] init];
+    sdk.name = @"萤石SDK";
+    sdk.version = @"v3.0.0.20150922";
+    [sdk checkUpdate];
+    [sdk runtime];
+    - (void)tableView:(UITableView *)tableView numberRowsOfSection:(NSUInteger)section;
+
+``` 
+
+
+``` objc
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // Override point for customization after application launch.
+
+    [DDModelHttpClient startWithURL:@“https://api.app.net/“ delegate:self]; // initialzie a DDModelHttpClient
+
+    return YES;
+}
+```

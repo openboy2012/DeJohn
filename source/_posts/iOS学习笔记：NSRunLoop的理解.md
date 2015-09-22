@@ -14,7 +14,7 @@ categories:
 主线程中的NSRunLoop是默认开启的但是处于一种“等待”的状态，当有信息输入时NSRunLoop才会发生响应（消息分发，支持异步），所以主线程不会被卡线程。 
 
 ###NSRunLoop的落脚点
-每个创建的多线程都会自己创建一个NSRunLoop，但是默认非主线程的RunLoop是没有运行的，需要为RunLoop添加至少一个事件源，然后去run它。
+每个创建的多线程都会自己创建一个NSRunLoop，但是默认非主线程的RunLoop是没有运行的，需要为RunLoop添加至少一个事件源，然后手动去run它。
 
 ###NSRunLoop处理的事件
 NSRunLoop能处理的事件有2种：一种是输入源，一种是定时源。  
@@ -27,7 +27,7 @@ NSRunLoop能处理的事件有2种：一种是输入源，一种是定时源。
 * 使用port或是自定义的input source来和其他线程进行通信<AFNetworking中有使用>;
 * 在线程（非主线程）中使用NSTimer
 * 使用 performSelector...系列
-```
+``` objc
 - (void)performSelector:(SEL)aSelector withObject:(id)anArgument afterDelay:(NSTimeInterval)delay inModes:(NSArray *)modes;  
 - (void)performSelector:(SEL)aSelector withObject:(id)anArgument afterDelay:(NSTimeInterval)delay;  
 ```
@@ -35,5 +35,5 @@ NSRunLoop能处理的事件有2种：一种是输入源，一种是定时源。
 
 
 ##引用别人的一篇文章觉得不错：
-###[ - (BOOL)runMode:(NSString *)mode beforeDate:(NSDate *)limitDate 方法 详解 ](http://blog.csdn.net/wjsxiaoweige/article/details/38318733)
+###[- (BOOL)runMode:(NSString *)mode beforeDate:(NSDate *)limitDate 方法详解](http://blog.csdn.net/wjsxiaoweige/article/details/38318733)
 
