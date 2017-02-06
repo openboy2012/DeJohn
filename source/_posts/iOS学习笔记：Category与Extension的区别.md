@@ -6,7 +6,7 @@ categories:
 ---
 
 ##前言
-作为一个有4年以上iOS开发经验的开者者来说，使用Category和Extension的场景应该是数不胜数的，也不知道从XCode的哪个版本开始，创建一个新的UIViewController类会默认添加一个该类的Extension，而我也习惯于在这个Extension上添加一些不公开的属性。
+作为一个有4年以上iOS开发经验的开者者来说，使用Category和Extension的场景应该是数不胜数的，也不知道从Xcode的哪个版本开始，创建一个新的UIViewController类会默认添加一个该类的Extension，而我也习惯于在这个Extension上添加一些不公开的属性。
 <!--more-->
 ##我的分析
 仔细查阅了相关资料并且结合自己的实践得出以下结论：

@@ -371,9 +371,14 @@ FlickerNumber 使用的默认number-formatter style 是：
 
 代码获得：  
 [https://github.com/openboy2012/FlickerNumber](https://github.com/openboy2012/FlickerNumber)  
-CocoaPods方式：  
-`pod search 'FlickerNumber’`
+CocoaPods获得方式：  
+`pod search 'FlickerNumber'`
 方法的列表可以参考源码和github上的ReadMe.
+
+###Swift适配
+FlickerNumber的Swift版本也已经开发完成，完美兼容了XCode7、Swift 2.0的语法，源码已经提交至github。
+CocoaPods获得方式：
+`pod search 'FlickerNumber-Swift'`
 
 ##总结
 在写这个控件的时候，用到了很多技术点：runtime(运行时)、数学算法方法(logf()等算法)、`UILabel`的本身的一些特性（attributedText）、`NSNumberFormatter`的格式化输出和`NSString`的`stringWithFormat:`方法输出。我收获了不少iOS的技术知识和用法。但这些都只是一个程序员该有的基本能力。

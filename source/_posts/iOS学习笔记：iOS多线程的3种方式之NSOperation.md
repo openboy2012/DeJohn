@@ -17,11 +17,13 @@ categories:
 
 NSOpeartion必须结合NSOperationQueue来使用，而且NSOperationQueue可以通过 `setMaxConcurrentOperationCount:`来设置最大并发数量，起到线程池的作用
 
+NSOperation的底层实现是GCD，可能通过断点在main方法实现或者start方法实现时看到堆栈内有GCD的相关内容:
+
 优点：  
 
 *  NSOperation不需要关心线程管理，数据同步的事情，可以把精力放在自己需要执行的操作上；
 *  NSOperation可以监控多线程的运行状态，随时可以结束任务；
-*  NSOperation支持KVO；  
+*  NSOperation支持KVO，这样我们通过KVO的方法获知线程中任务的状态；  
 
 缺点：
 
