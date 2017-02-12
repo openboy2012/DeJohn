@@ -51,7 +51,7 @@ alipay: 'http://ipa-download.qiniudn.com/ReceiveMoneyByAlipay.png'
 weixin: 'http://ipa-download.qiniudn.com/ReceiveMoneyByWechat.png'
 
 # Miscellaneous
-baidu_analytics: ''
+baidu_analytics: 'fb96ce8c6735bdbc1a52b6631afba814'
 google_analytics: ''
 favicon: /favicon.png
 
