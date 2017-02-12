@@ -1,4 +1,5 @@
-title: "『钻』研iOS 之 深入理解NSRunLoop"
+title: 『钻』研iOS 之深入理解NSRunLoop
+date: 2017-02-12 13:43:41
 tags:
   - Objective-C
   - iOS基础
@@ -10,12 +11,12 @@ tags:
 当然，还是2年前的那句话：
 `NSRunLoop`其英文释义一样，是运行一个无限循环，她是跟线程一起存在的。在主线程中NSRunLoop是默认启动的；在多线程中NSRunLoop默认不是启动的，需要开发者手动运行才能启动。 
 
-##RunLoop的概念：
+## RunLoop的概念
 RunLoop本质上是一个[Event Loop](https://en.wikipedia.org/wiki/Event_loop)，实现的是一个`do-while`循环，主要用来处理事件消息。
 <!--more-->
 苹果设计的高明之处：是进入do-while循环之后不会导致死循环，因为`mach_port`的存在，会让这个RunLoop在某个事件处睡眠，事件循环就暂停，再在需要的时候通过`mach_port`唤醒RunLoop，事件循环就会继续处理。
 
-##__CFRunLoop & __CFRunLoopMode
+## \_\_CFRunLoop & \_\_CFRunLoopMode
 源码中的结构体定义如下：
 ```objc
 struct __CFRunLoop {
@@ -52,9 +53,9 @@ struct __CFRunLoopMode {
 
 说明一个`__CFRunLoop`中可以插入多个Mode，每个Mode又可以包含多个source事件、多个timer实例和多个观察者(observer)对象，Source、Timer和Observer统称Mode Item。
 
-####至于source为何选用set类型，而timer与observer选用的array类型？
+#### 至于source为何选用set类型，而timer与observer选用的array类型？
 猜测：`SET集合`既能保证数据的唯一性（hash值比较），又能快速索引（比如NSObject cancel延时事件，需要快速准确得找到cancel的source这种场景）。
-## CFRunLoopSourceRef & CFRunLoopTimerRef & CFRunLoopObserverRef
+## \_\_CFRunLoopSource & \_\_CFRunLoopTimer & \_\_CFRunLoopObserver
 ```objc
 struct __CFRunLoopSource {
     CFRuntimeBase _base;
@@ -137,7 +138,7 @@ typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActivity) {
     kCFRunLoopExit          = (1UL << 7), // 即将退出Loop
 };
 ```
-##RunLoop的设计
+## RunLoop的设计
 CFRunLoop的设计是一个循环处理多个类型的事件处理（Timers，Source、Observer等）模型。
 工作流程如下图：
 <img src="http://ipa-download.qiniudn.com/AAA622AD-DBF3-4D35-9086-333DDF9FE9AE.png" width="647"/>
@@ -150,7 +151,7 @@ RunLoop中虽然包含了多个Mode，但一次循环只能执行其中一个Mod
 
 我们可以通过`addTimer:forMode:`方法把NSTimer（NSTimer默认是在NSRunLoopDefaultMode里）加载到CommonModeItems里，保证NSTimer的触发在UITrackingRunLoopMode里也能触发。
 
-##RunLoop核心方法
+## RunLoop核心方法
 源码中的核心方法整理如下：
 ```objc
 void CFRunLoopRun(void) {	/* DOES CALLOUT */
@@ -273,7 +274,7 @@ static int32_t __CFRunLoopRun(CFRunLoopRef rl, CFRunLoopModeRef rlm, CFTimeInter
 }
 ``` 
 
-##线程安全
+## 线程安全 
 CFRunLoop是线程安全的，CFRunLopp是纯C的API封装。从源代码定义的各个结构体对象中都会包含pthread_mutex的成员变量。
 pthread_mutex被实例成了`递归锁`，递归锁能保证在同一个线程里被多次调用不会造成锁等待的情况，但在多线程中能保证数据同步而存在锁等待的效果。
 ```c++
@@ -287,13 +288,13 @@ CF_INLINE void __CFRunLoopLockInit(pthread_mutex_t *lock) {
     }
 }
 ```
-##RunLoop实现的功能
+## RunLoop实现的功能
 `广告`：更多代码[demo](https://github.com/openboy2012/DDCategory)可以进入我的[github](https://github.com/openboy2012/DDCategory)进行下载查看运行结果，基本上每行关键代码都有详细的注释。本文中出现的代码都在这个项目下面，请结合项目代码阅读本文，效果更佳。
-### 事件响应 & 手势识别 & AutoReleasePool & UI更新
+### 事件响应 & 手势识别 & AutoReleasePool & UI更新 
 当我们启动一个app的时候，点击暂停线程我们会看到这样一个堆栈关系：
 <img src="http://ipa-download.qiniudn.com/0FFEFFA1-F7A0-4802-B54F-19C00A66EE27.png" width="410"/>
 先来看下主线程的`po CFRunLoopGetCurrent()`，整理以后如下：
-```c++
+```objc
 CFRunLoop
 { 
    wakeup port = 0x1e03, stopped = false, ignoreWakeUps = false, 
@@ -446,7 +447,7 @@ CFRunLoop
 `_handleEventQueue`： //用户事件回调(source0)，一般的`addTarget: action: forControlEvents:`方法都会加在source0，并由`_handleEventQueue`执行。
 
 再看下事件点击线程6的`po CFRunLoopGetCurrent()`，整理以后如下：
-```c++
+```objc
 CFRunLoop
 {
     wakeup port = 0x3403, stopped = false, ignoreWakeUps = false, 
@@ -495,6 +496,7 @@ performSelector延时系列方法也需要RunLoop处理，在内部会创建一�
 [深入理解RunLoop](http://blog.ibireme.com/2015/05/18/runloop/) --ibireme大神的深入专研精神真的令人倾佩。
 [NSRunLoop](https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSRunLoop_Class/index.html#//apple_ref/doc/uid/TP40003725)
 [Event Loop](https://en.wikipedia.org/wiki/Event_loop)
-[Mach(kernel)](https://en.wikipedia.org/wiki/Mach_(kernel))
+[Mach(kernel)](https://en.wikipedia.org/wiki/Mach_(kernel)
+
 
 

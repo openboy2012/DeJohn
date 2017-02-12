@@ -8,11 +8,11 @@ categories:
 
 众所周知：iOS的多线程的创建方式有3种：[NSThread](https://developer.apple.com/library/ios/documentation/Cocoa/Reference/Foundation/Classes/NSThread_Class/), [NSOperation](https://developer.apple.com/library/ios/documentation/Cocoa/Reference/NSOperation_class/) 和[GCD(Grand_Central_Dispatch)](https://developer.apple.com/library/ios/documentation/Performance/Reference/GCD_libdispatch_Ref/)。
 
-##为什么苹果要出3种多线程呢？
+## 为什么苹果要出3种多线程呢？
 答案是创建多线种的需求千变万化，不是所有的方式都能解决需求，所以三者相互共存着。今天我就先来分析NSThread的优缺点。  
 <!--more-->
 
-##我的见解
+## 我的见解
 通过阅读苹果的官方文档和参考了同行中的大牛的理解得出以下结论：
 
 优点：
@@ -25,6 +25,6 @@ categories:
 * NSThread需要程序员自己处理其生命周期，数据同步问题（数据锁等），势必会影响了开发效率（ps：我以上的结论是站在不同使用角度的看法）;
 * 线程同步以及数据加锁这些操作会影响到线程运行时的性能。  
 
-##具体的使用我这边就不多讲了，推荐别人写的文章好了：
-###[ iOS多线程编程之NSThread的使用](http://blog.csdn.net/totogo2010/article/details/8010231)
+## 具体的使用我这边就不多讲了，推荐别人写的文章好了：
+### [iOS多线程编程之NSThread的使用](http://blog.csdn.net/totogo2010/article/details/8010231)
 

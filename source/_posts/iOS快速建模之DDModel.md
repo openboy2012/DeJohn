@@ -6,11 +6,11 @@ tags:
 - iOS开发
 ---
 
-##DDModel概要
+## DDModel概要
 不知不觉我已经毕业快4年了，iOS开发也做了4年多的时间了，也有了一定的经验积累，这次我将着重介绍我封装的模型基类--[DDModel](https://github.com/openboy2012/DDModel)。  
 DDModel封装了SQLite、HTTP以及JSON/XML的ORM特性，能快速搭建一个具有本地持久化，快速获取HTTP请求数据以及NSDictionary ORM到模型的模型层工具类，你只要根据自己的业务建模，极大地提高了开发的效率，把更多的精力放在UI的编写中去。  
 <!--more-->
-##DDModel介绍
+## DDModel介绍
 * DDModel继承了[SQLitePersistentObject](https://github.com/openboy2012/DDSQLiteKit.git)，这样就快速集成了SQLite存储ORM到对象的过程，之前的[一篇文章](http://www.dejohndong.com/2015/05/04/iOS快速建模之DDModel/#more)有介绍；
 * DDModel封装了基于[AFNetworking](https://github.com/AFNetworking/AFNetworking)的HTTP请求，简化了大部分开发者把http请求放在Controller层的操作，起到了解耦合的作用；  
 * DDModel封装JSON/XML到Model的功能，使JSON/XML ORM到对象模型。使用到的第三方库分别是[JTObjectMapping](https://github.com/jamztang/JTObjectMapping)和[XMLDictionary](https://github.com/nicklockwood/XMLDictionary)；  
@@ -18,7 +18,7 @@ DDModel封装了SQLite、HTTP以及JSON/XML的ORM特性，能快速搭建一个�
 * DDModel支持基于SQLite的Cache功能；  
 * DDModel支持RESTfulAPI。  
 
-##如何获取代码？
+## 如何获取代码？
 
 * 方法1：通过CocoaPods安装DDModel:
 `pod search ‘DDModel’`, 然后在你的Podfile中添加最新的版本`pod ‘DDModel’, ‘~> 0.4’`,这是最快捷的方法，也是我强烈推荐的方法
@@ -26,8 +26,8 @@ DDModel封装了SQLite、HTTP以及JSON/XML的ORM特性，能快速搭建一个�
 * 方法2：通过github的代码仓库获取[DDModel](https://github.com/openboy2012/DDModel);  
 你可以把该项目中的`DDModel/Classes`目录下的所有文件拷贝到你的项目里，然后再把DDModel依赖的第三方库：[AFNetworking](https://github.com/AFNetworking/AFNetworking)、[XMLDictionary](https://github.com/nicklockwood/XMLDictionary)、[JTObjectMapping](https://github.com/jamztang/JTObjectMapping)、[SQLitePersistentObject](https://github.com/openboy2012/DDSQLiteKit)、[MBProgressHUD](https://github.com/jdg/MBProgressHUD)都要拷贝到你的项目。
 
-##如何使用DDModel?
-###DDModelHTTPClient
+## 如何使用DDModel?
+### DDModelHTTPClient
 参考Demo项目，你可以在你的AppDelegate里加入以下代码来启动一个DDModelHttpClient:
 ``` objc
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -78,7 +78,7 @@ DDModel封装了SQLite、HTTP以及JSON/XML的ORM特性，能快速搭建一个�
 以上这些方法来定制自己的业务逻辑。
 当然你可以在DDModelHTTPClient里使用AFNetworking里的所有功能。
 
-###DDModel
+### DDModel
 然后你就可以根据自己的业务创建各种继承于DDModel的模型了。
 
 举例：  
@@ -207,7 +207,7 @@ parentViewController:(id)viewController
      success:(DDResponseSuccessBlock)success
      failure:(DDResponseFailureBlock)failure;
 ```
-##总结
+## 总结
 DDModel可以简化你的开发工作，把更多的精力放在UI的编写上。
 
 

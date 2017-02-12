@@ -6,7 +6,7 @@ tags:
 id: 20
 categories: 
 ---
-##起因
+## 起因
 最近的项目中要求实现支付宝的滚动数字的效果，查找到了一些第三方的代码，但是效果很不理想。  
 
 求人不如求己，那我就自己动手来实现该效果。在学习github大牛的代码过程中，看到很多大牛都是用Category来扩展实现某些功能，
@@ -15,12 +15,12 @@ categories:
 那我也尝试着使用Category的方式来实现该数字滚动的效果。  
 <!--more-->
 
-##滚动思路
+## 滚动思路
 众所周知，UIKit中的UILabel控件格外强大，在开启iOS的动效以后，UILabel上的内容变换都会产生动画效果。那我就可以用UILabel的这个特性来实现数字的滚动效果。
 
 设计思路：让数字从某个起点数字累加同一个平均数直到大于或等于目标数字，每次累加的数字结果设置为这个UILabel的text值，这个过程会形成动画，正好达到一个数字变化的效果。 当然我们可以控制刷新的间隔。 
 
-##代码实现
+## 代码实现
 新建UILabel的Category: `UILabel+FlickerNumber`
 
 首先，数字滚动的动画是一个过渡过程，我需要一个中间变量。
@@ -297,7 +297,7 @@ FlickerNumber 使用的默认number-formatter style 是：
 }
 ```
 
-###如何处理float类型的数据？
+### 如何处理float类型的数据？
 思路：把float类型 乘以(*) 小数点的位数的倍数变成整型数字，还是从0开始累加到目标整型数字，只是在输出text的时候再除以相应的倍数，到达滚动float类型的数字的效果。
 
 获取Float类型数值倍数方法，这里只处理了最大小数位为6位的情况：
@@ -361,13 +361,13 @@ FlickerNumber 使用的默认number-formatter style 是：
 }
 
 ```
-###处理滚动动画被打断
+### 处理滚动动画被打断
 ``` objc 
 [[NSRunLoop currentRunLoop] addTimer:self.currentTimer forMode:NSRunLoopCommonModes];
 ```
 当UILabel处于一个滚动的视图中（如UICollectionView、UIScrollView等），在该视图滚动过程中，UILabel的滚动动画会被打断，使用改代码以后可以防止动画被打断。
 
-##更多
+## 更多
 
 代码获得：  
 [https://github.com/openboy2012/FlickerNumber](https://github.com/openboy2012/FlickerNumber)  
@@ -375,12 +375,12 @@ CocoaPods获得方式：
 `pod search 'FlickerNumber'`
 方法的列表可以参考源码和github上的ReadMe.
 
-###Swift适配
+### Swift适配
 FlickerNumber的Swift版本也已经开发完成，完美兼容了XCode7、Swift 2.0的语法，源码已经提交至github。
 CocoaPods获得方式：
 `pod search 'FlickerNumber-Swift'`
 
-##总结
+## 总结
 在写这个控件的时候，用到了很多技术点：runtime(运行时)、数学算法方法(logf()等算法)、`UILabel`的本身的一些特性（attributedText）、`NSNumberFormatter`的格式化输出和`NSString`的`stringWithFormat:`方法输出。我收获了不少iOS的技术知识和用法。但这些都只是一个程序员该有的基本能力。
 
 真正的意义是在于我这个开源过程。

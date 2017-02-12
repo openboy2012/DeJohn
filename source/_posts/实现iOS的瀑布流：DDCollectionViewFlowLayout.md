@@ -88,6 +88,6 @@ referenceSizeForFooterInSection:(NSInteger)section;
 ```
 这些方法都适配了DDCollectionViewFlowLayout,让你有亲切的感觉。  
 
-###更多
+### 更多
 如有不懂可以参考Demo[https://github.com/openboy2012/DDCollectionViewFlowLayout](https://github.com/openboy2012/DDCollectionViewFlowLayout)
 

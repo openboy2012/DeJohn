@@ -9,18 +9,18 @@ categories:
 ---
 
 iOS内存管理在我这6年工作经验过程中的变化可谓是翻天覆地，由于ARC（Automatic Refenerce Counting）的出现，大大简化了iOS开发者的内存管理优化工作。ARC不是垃圾回收机制，虽然开发者不用像以前那样刻意关心内存管理问题，但也不是意味着我们不需要了解iOS的内存管理。
-##堆（Heap）与栈(Stack)
+## 堆（Heap）与栈(Stack)
 讲到内存，不得不先讲下堆栈，堆和栈的定义大家自己[百度百科](http://baike.baidu.com/link?url=2DK5Zuh6uTuATG_7IKOH8kNayWss2L_pOchRmk1mh6iYM5wo60g_QU1S4IoopLMQzy8f937n7U6_cwQSgZvRXnXo-b0QOEE2mfI3Ebo-u4S)，本文不再展开，我只阐述自己的总结：
 栈（操作系统）：由操作系统（编译器）自动分配释放，存放函数的参数值，局部变量的值、常量（int、bool）等。其操作方式类似于数据结构中的栈(Stack)。
 堆（操作系统）：一般由程序员分配释放，一般的指针对象创建都存放在堆区，若程序员不释放，程序结束时可能由OS回收，分配方式类似于链表（Queue）。
 <!--more-->
 本文主要围绕着堆区（Heap）的内存管理进行讲解。
-##Reference Counting
+## Reference Counting
 先讲「Reference Counting」引用计数，不管是MRC或者ARC都会有这个Reference Counting。Objective-C的内存管理方式采用的是保留计数（retainCount）的方式来保证内存的可用性，内存初始化（alloc&init）的时候retainCount为1，当内存被其他指针引用（retain）一次以后该内存的retainCount会+1，当引用的这块内存的这个指针被释放（release）一次以后该内存的retainCount会-1，当retainCount=0时内存会被标记为可回收，会执行dealloc方法进行真正的资源释放销毁操作。
 如果内存在不再使用的时候retainCount没有变成0（指针已经置成nil，但当时分配的对象没有release的情况下，形成了野指针），那就是内存泄露（Memory leak）；
 如果内存在使用的时候retainCount已经为0（指针的地址还是存在，但这个地址已经被release的情况下）的时候，那就是内存溢出（EXC_BAD_ACCESS）。
 引用计数的概念在很多语言中都有体现：比如C++的智能指针：std::shared_ptr。还有更多[Reference Counting](https://en.wikipedia.org/wiki/Reference_counting)的说明请看[Wiki](https://en.wikipedia.org/wiki/Reference_counting)。
-##MRC时代（Before 2012）
+## MRC时代（Before 2012）
 `广告`：更多代码[demo](https://github.com/openboy2012/DDCategory)可以进入我的[github](https://github.com/openboy2012/DDCategory)进行下载查看运行结果，基本上每行关键代码都有详细的注释。本文中出现的代码都在这个项目下面，请结合项目代码阅读本文，效果更佳。
 
 MRC（Mannual Reference Counting）手动引用计数内存管理，就是Objective-C对象的内存的创建和释放需要开发者手动管理。
@@ -118,14 +118,14 @@ removeFromSuperView方法通常由系统自动完成;
 `autorelease`：会把对象加入到就近的NSAutoReleasePool（显式优先），当Pool释放时对该对象进行一次release操作。
 `dealloc`：当对象的retainCount为0的时候会调用这个方法，用来销毁对象的内部处理。
 
-###dealloc的线程小知识
+### dealloc的线程小知识
 dealloc方法的执行线程是对象最后一次release的线程，这里就会存在一个问题：如果在dealloc里发生了非常耗时的操作，就会出现主线程卡住的情况，通常我们会重载UIViewController的dealloc方法（基本上都是主线程）来释放一些资源，比如通知（NSNotification）的移除、C++的跨平台库的析构等。如果C++的跨平台库的析构出现了耗时操作，很有可能会卡我们的主线程，所以使用的时候要格外的注意。
 
 PS:写这么多代码我只是想表达之前手动管理有多么地复杂，iOS开发的入门门槛也比现在高很多。最重要的事，我只是想表达：我确确实实是从那个时代过来了，真真实实得写了这么多年的代码>_<
 
 好在苹果的工程师们早早得注意到了这个问题，设计了这个[Clang](https://en.wikipedia.org/wiki/Clang)编译器以及ARC的内存管理方式，替开发者来处理内存管理的事情，大大促进了iOS的开发效率，也大大降低了iOS开发的门槛。
 
-##ARC时代(2012~至今)
+## ARC时代(2012~至今)
 ARC（Automatic Reference Counting）自动引用计数内存管理，通过编译器（Clang Complier），本质上还是会使用到retain、release等关键字方法，只是不是开发者手动添加，而是编译器在编译过程中添加retain、release等关键字方法到相应的代码行。
 
 <img src="https://developer.apple.com/library/content/releasenotes/ObjectiveC/RN-TransitioningToARC/Art/ARC_Illustration.jpg", width='751'/>
@@ -205,7 +205,7 @@ ARC（Automatic Reference Counting）自动引用计数内存管理，通过编�
 
 从AutoReleasePool的栗子可以分析出来，ARC与MRC内存管理的底层实现其实没有什么变化，只是苹果的工程师们在ARC环境的设计理念下花了大量精力把内存管理的工作交给了编译器来处理，简化开发内存管理的工作。 
 
-###assign与weak的区别
+### assign与weak的区别
 `assign`：ARC&MRC环境下通用，通常修饰的是常量，比如int、bool等；在MRC环境下，@property时可以修饰（id<delegate>对象）来防止循环引用、可以修饰IBOutlet出来的UI元素对象、当然也可以修饰不想对retainCount作增加的对象（引用计数不发生变化）；
 `weak`：只能在ARC环境下使用，weak只能修饰OC对象（包含delegate），不能修饰常量或者其他非OC对象。
 
