@@ -101,7 +101,7 @@ MRC时代的UIViewController实现文件随随便便都是好几千行代码，�
 }
 ```
 以上代码的运行结果如下：
-<img src="http://ipa-download.qiniudn.com/F70C808F-2445-4E7D-A219-3E1120CD105E.png" width="400"/>
+<img src="http://ipa-download.qiniudn.com/F70C808F-2445-4E7D-A219-3E1120CD105E.png" width="714"/>
 
 `广告`：更多代码[demo](https://github.com/openboy2012/DDCategory)可以进入我的[github](https://github.com/openboy2012/DDCategory)进行下载查看运行结果，基本上每行代码都有详细的注释。本文中出现的代码都在这个项目下面，请结合项目代码阅读本文，效果更佳。
 
@@ -128,7 +128,7 @@ PS:写这么多代码我只是想表达之前手动管理有多么地复杂，iO
 ##ARC时代(2012~至今)
 ARC（Automatic Reference Counting）自动引用计数内存管理，通过编译器（Clang Complier），本质上还是会使用到retain、release等关键字方法，只是不是开发者手动添加，而是编译器在编译过程中添加retain、release等关键字方法到相应的代码行。
 
-<img src="https://developer.apple.com/library/content/releasenotes/ObjectiveC/RN-TransitioningToARC/Art/ARC_Illustration.jpg", width='400'/>
+<img src="https://developer.apple.com/library/content/releasenotes/ObjectiveC/RN-TransitioningToARC/Art/ARC_Illustration.jpg", width='751'/>
 
 还是先来看看之前的代码在ARC环境下是怎么样的：
 ```objc
