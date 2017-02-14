@@ -8,19 +8,19 @@ menu:
 subnav:
   github: "https://github.com/openboy2012"
   weibo: "http://weibo.com/p/1005051492121455/home"
-  #rss: "#"
+  rss: "http://www.dejohndong.com/atom.xml"
   zhihu: "http://www.zhihu.com/people/diao-shu-79"
+  mail: "Mailto:dongjia_9251@126.com"
   #qq: "#"
   #weixin: "#"
   #jianshu: "#"
   #douban: "#"
-  mail: "Mailto:dongjia_9251@126.com"
   #facebook: "#"
   #google: "#"
   #twitter: "#"
   #linkedin: "#"
 
-#rss: /atom.xml
+rss: /atom.xml
 
 # 是否需要修改 root 路径
 # 如果您的网站存放在子目录中，例如 http://yoursite.com/blog，

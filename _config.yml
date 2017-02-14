@@ -94,3 +94,19 @@ deploy:
   type: git  
   repo: https://github.com/openboy2012/openboy2012.github.io.git
   branch: prepare
+
+# RSS feed
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
+
+# Sitemap
+sitemap:
+  path: sitemap.xml
+  template: ./sitemap_template.xml
+  
+baidusitemap:
+path: baidusitemap.xml
