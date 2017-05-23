@@ -152,7 +152,7 @@ RunLoop中虽然包含了多个Mode，但一次循环只能执行其中一个Mod
 我们可以通过`addTimer:forMode:`方法把NSTimer（NSTimer默认是在NSRunLoopDefaultMode里）加载到CommonModeItems里，保证NSTimer的触发在UITrackingRunLoopMode里也能触发。
 
 ## RunLoop核心方法
-源码中的核心方法整理如下：
+源码中的核心方法整理如下
 ```objc
 void CFRunLoopRun(void) {	/* DOES CALLOUT */
     int32_t result;
@@ -272,12 +272,11 @@ static int32_t __CFRunLoopRun(CFRunLoopRef rl, CFRunLoopModeRef rlm, CFTimeInter
     } while (0 == retVal);
     return retVal;
 }
-``` 
-
-## 线程安全 
+```
+### 线程安全 
 CFRunLoop是线程安全的，CFRunLopp是纯C的API封装。从源代码定义的各个结构体对象中都会包含pthread_mutex的成员变量。
 pthread_mutex被实例成了`递归锁`，递归锁能保证在同一个线程里被多次调用不会造成锁等待的情况，但在多线程中能保证数据同步而存在锁等待的效果。
-```c++
+```objc
 CF_INLINE void __CFRunLoopLockInit(pthread_mutex_t *lock) {
     pthread_mutexattr_t mattr;
     pthread_mutexattr_init(&mattr);
